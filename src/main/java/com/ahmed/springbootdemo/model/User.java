@@ -1,9 +1,23 @@
 package com.ahmed.springbootdemo.model;
 
+import lombok.*;
+import jakarta.persistence.*;
+
+//@Getter
+//@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
+@Entity
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
     private String name;
     private int age;
 
+    /*
     public String getName() {
         return name;
     }
@@ -19,4 +33,5 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
+     */
 }

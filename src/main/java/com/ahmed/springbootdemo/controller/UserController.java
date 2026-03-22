@@ -14,18 +14,28 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/getAllUsers")
-    public List<User> GetAllUsers() {
-        return userService.GetAllUsers();
+    @GetMapping
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    @PostMapping("/createUser")
-    public User CreateUser(@RequestBody User user) {
+    @PostMapping
+    public User createUser(@RequestBody User user) {
         return userService.addUser(user);
     }
 
-    @DeleteMapping("/deleteUser")
-    public List<User> DeleteUser(User user) {
-        return userService.DeleteUser(user);
+    @DeleteMapping("/{id}")
+    public List<User> deleteUser(@PathVariable Long id) {
+        return userService.deleteUser(id);
+    }
+
+    @GetMapping("/{id}")
+    public User getUser(@PathVariable Long id) {
+        return userService.getUser(id);
+    }
+
+    @PutMapping("/{id}")
+    public User UpDateUser(@PathVariable Long id, @RequestBody User user) {
+        return userService.updateUser(id, user);
     }
 }
