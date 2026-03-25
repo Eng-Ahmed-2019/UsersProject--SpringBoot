@@ -2,6 +2,8 @@ package com.ahmed.springbootdemo.model;
 
 import lombok.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.Size;
 
 //@Getter
 //@Setter
@@ -14,7 +16,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "Name is Requiered")
+    @Size(min = 3,max = 20,message = "Name must be between 3 and 20 characters")
     private String name;
+
+    @Min(value = 18, message = "Age must be at least 18")
+    @Max(value = 60, message = "Age must be at most 60")
     private int age;
 
     /*

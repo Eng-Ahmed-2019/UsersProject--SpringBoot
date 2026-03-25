@@ -7,23 +7,23 @@ import com.ahmed.springbootdemo.repository.UserRepository;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
+    private final UserRepository _userRepository;
 
     public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+        this._userRepository = userRepository;
     }
 
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return _userRepository.findAll(); // FindAll Built-in Function...
     }
 
-    public User getUser(long id) {
-        User u = userRepository.findById(id).orElse(null);
+    public User getUser(Long id) {
+        User u = _userRepository.findById(id).orElse(null);
         return u;
     }
 
     public User addUser(User user) {
-        return userRepository.save(user);
+        return _userRepository.save(user);
     }
 
     public User updateUser(Long id, User user) {
@@ -33,13 +33,13 @@ public class UserService {
         existing.setName(user.getName());
         existing.setAge(user.getAge());
 
-        return userRepository.save(existing);
+        return _userRepository.save(existing);
     }
 
-    public List<User> deleteUser(long id) {
+    public List<User> deleteUser(Long id) {
         User u = getUser(id);
         if (u == null) return null;
-        userRepository.deleteById(id);
-        return userRepository.findAll();
+        _userRepository.deleteById(id);
+        return _userRepository.findAll();
     }
 }
