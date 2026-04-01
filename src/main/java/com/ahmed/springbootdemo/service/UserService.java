@@ -2,10 +2,14 @@ package com.ahmed.springbootdemo.service;
 
 import java.util.*;
 import com.ahmed.springbootdemo.model.User;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
+import org.springframework.data.domain.Pageable;
 import com.ahmed.springbootdemo.repository.UserRepository;
 
 @Service
+@Component
 public class UserService {
     private final UserRepository _userRepository;
 
@@ -13,8 +17,8 @@ public class UserService {
         this._userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
-        return _userRepository.findAll(); // FindAll Built-in Function...
+    public Page<User> getAllUsers(Pageable pageable) {
+        return _userRepository.findAll(pageable); // FindAll Built-in Function...
     }
 
     public User getUser(Long id) {
@@ -36,10 +40,14 @@ public class UserService {
         return _userRepository.save(existing);
     }
 
-    public List<User> deleteUser(Long id) {
+    public Page<User> deleteUser(Long id, Pageable pageable) {
         User u = getUser(id);
         if (u == null) return null;
         _userRepository.deleteById(id);
-        return _userRepository.findAll();
+        return _userRepository.findAll(pageable);
+    }
+
+    public Page<User> searchByName(String name, Pageable pageable) {
+        return _userRepository.findByNameContainingIgnoreCase(name, pageable);
     }
 }

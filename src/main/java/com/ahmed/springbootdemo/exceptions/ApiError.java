@@ -11,6 +11,10 @@ public class ApiError {
         this.errors = errors;
     }
 
+    public ApiError apiError() {
+        return new ApiError("Default message", 500, null);
+    }
+
     public String getMessage() {
         return message;
     }
@@ -23,3 +27,21 @@ public class ApiError {
         return errors;
     }
 }
+
+/*
+@Component
+public class ApiError {
+    private String message;
+    private int status;
+    private Object errors;
+
+    public ApiError() {} // no-args constructor
+
+    // setters
+    public void setMessage(String message) { this.message = message; }
+    public void setStatus(int status) { this.status = status; }
+    public void setErrors(Object errors) { this.errors = errors; }
+
+    // getters
+}
+ */

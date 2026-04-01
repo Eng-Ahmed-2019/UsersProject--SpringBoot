@@ -4,6 +4,7 @@ import lombok.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.Size;
+import org.springframework.stereotype.Component;
 
 //@Getter
 //@Setter
@@ -11,13 +12,15 @@ import jakarta.validation.constraints.Size;
 @AllArgsConstructor
 @Data
 @Entity
+@Table(name = "app_user")
+@Component
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotBlank(message = "Name is Requiered")
-    @Size(min = 3,max = 20,message = "Name must be between 3 and 20 characters")
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
     private String name;
 
     @Min(value = 18, message = "Age must be at least 18")

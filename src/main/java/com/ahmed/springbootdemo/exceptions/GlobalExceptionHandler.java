@@ -70,11 +70,14 @@ public class GlobalExceptionHandler {
         return Map.of("error", ex.getMessage());
     }
 
+    /*
     @ExceptionHandler(Exception.class)
     public ApiError handleGeneralException(Exception ex) {
         return new ApiError("Internal Server Error", 500, null);
     }
+     */
 
+    /*
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ApiError handleValidationErrorss(MethodArgumentNotValidException ex) {
 
@@ -89,4 +92,5 @@ public class GlobalExceptionHandler {
 
         return new ApiError("Validation Failed", 400, errors);
     }
+     */
 }
